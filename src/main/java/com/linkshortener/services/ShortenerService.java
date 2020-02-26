@@ -2,7 +2,7 @@ package com.linkshortener.services;
 
 public class ShortenerService {
 
-    public static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz0123456789";
+    public static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
     public static final int Base = ALPHABET.length();
 
     public static String encode(int i)

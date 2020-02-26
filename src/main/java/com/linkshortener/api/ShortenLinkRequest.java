@@ -9,5 +9,5 @@ import lombok.Setter;
 @Setter
 public class ShortenLinkRequest {
 
-    public String longUrl;
+    private String longUrl;
 }

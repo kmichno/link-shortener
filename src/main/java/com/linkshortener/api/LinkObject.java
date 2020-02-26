@@ -5,18 +5,36 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 
+import java.io.Serializable;
+
 @Data
-@AllArgsConstructor
-public class LinkObject {
+public class LinkObject implements Serializable {
 
     @Transient
     public static final String SEQUENCE_NAME = "link_sequence";
 
     @Id
-    public String id;
+    private String id;
 
-    public String shortUrl;
+    private String shortUrl;
 
-    public String longUrl;
+    private String longUrl;
 
+    private int numberUniqueEntries = 0;
+
+    private int numberAllEntries = 0;
+
+    public LinkObject(String id, String shortUrl, String longUrl) {
+        this.id = id;
+        this.shortUrl = shortUrl;
+        this.longUrl = longUrl;
+    }
+
+    public void addNumberUniqueEntries() {
+        numberUniqueEntries++;
+    }
+
+    public void addNumberAllEntries() {
+        numberAllEntries++;
+    }
 }
