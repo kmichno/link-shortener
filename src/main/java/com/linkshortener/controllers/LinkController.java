@@ -16,6 +16,7 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -54,7 +55,7 @@ public class LinkController {
         linkObject.addNumberUniqueEntries();
         linkRepository.save(linkObject);
         saveStatistic(request, linkObject);
-        return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY).header(HttpHeaders.LOCATION, linkObject.getLongUrl()).build();
+        return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY).header(HttpHeaders.LOCATION, linkObject.getLongUrl()).cacheControl(CacheControl.noCache()).build();
     }
 
     private void saveStatistic(HttpServletRequest request, LinkObject linkObject) {
@@ -62,7 +63,7 @@ public class LinkController {
         UserAgent userAgent = UserAgent.parseUserAgentString(userAgentString);
         OperatingSystem os = userAgent.getOperatingSystem();
         Browser browser = userAgent.getBrowser();
-        Statistic statistic = new Statistic(os.getName(), browser.getName(), "", linkObject.getId());
+        Statistic statistic = new Statistic(os.getName(), browser.getName(), "", linkObject.getId(), LocalDateTime.now());
         statisticRepository.save(statistic);
     }
 
