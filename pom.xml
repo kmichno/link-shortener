@@ -74,10 +74,43 @@
 			<artifactId>UserAgentUtils</artifactId>
 			<version>1.20</version>
 		</dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <scope>provided</scope>
+        </dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+            <plugin>
+            <groupId>com.github.kongchen</groupId>
+            <artifactId>swagger-maven-plugin</artifactId>
+            <configuration>
+                <apiSources>
+                    <apiSource>
+                        <springmvc>true</springmvc>
+                        <locations>(1)
+                            <location>com.linkshortener</location>
+                        </locations>
+                        <outputFormats>yaml</outputFormats>
+                        <swaggerDirectory>${basedir}/target/generated-swagger/</swaggerDirectory>
+                        <info>
+                            <title>Module Remote API</title>
+                            <version>v1</version>
+                        </info>
+                    </apiSource>
+                </apiSources>
+            </configuration>
+            <executions>
+                <execution>
+                    <phase>compile</phase>
+                    <goals>
+                        <goal>generate</goal>
+                    </goals>
+                </execution>
+            </executions>
+            </plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
