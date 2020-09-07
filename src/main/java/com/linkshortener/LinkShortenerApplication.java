@@ -19,15 +19,6 @@ public class LinkShortenerApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**").allowedOrigins("http://localhost:3000");
-//                registry.addMapping("/link/short").allowedOrigins("http://localhost:3000");
-//                registry.addMapping("/link/delete/**").allowedOrigins("http://localhost:3000");
-//                registry.addMapping("/link/**").allowedOrigins("http://localhost:3000");
-//                registry.addMapping("/link/edit/**").allowedOrigins("http://localhost:3000");
-                //                registry.addMapping("/links").allowedOrigins("http://192.168.100.9:3000");
-                //                registry.addMapping("/link/short").allowedOrigins("http://192.168.100.9:3000");
-                //                registry.addMapping("/link/delete/**").allowedOrigins("http://192.168.100.9:3000");
-                //                registry.addMapping("/link/**").allowedOrigins("http://192.168.100.9:3000");
-                //                registry.addMapping("/link/edit/**").allowedOrigins("http://192.168.100.9:3000");
             }
         };
     }
